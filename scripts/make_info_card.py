@@ -21,10 +21,11 @@ from theme import (BORDER, CYAN, DIM, MAGENTA, MONO, PURPLE, PURPLE_HI, TEXT,
 OUT = "info-card.svg"
 API = "https://api.github.com"
 
-# Hand-written lines: the things an API cannot infer.
-FOCUS = "church tech - computer vision - small sharp tools"
-STACK = "python - astro - typescript - opencv - tensorflow"
-STATUS = "vibing"
+# Hand-written lines: the things an API cannot infer. The longer blurb lives in
+# make_about_svg.py, since a neofetch field is the wrong shape for a paragraph.
+FOCUS = "LLMs · AI agents · automation · workflow integration"
+STACK = "python · javascript · + whatever the model swears is best"
+STATUS = "in the flow state, building AI that actually helps people"
 
 # Sized so that, laid out at 490px next to ascii.svg at 370px, both cards
 # render the same height in the README table.

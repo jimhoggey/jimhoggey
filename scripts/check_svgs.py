@@ -16,7 +16,7 @@ import shutil
 import sys
 import xml.dom.minidom
 
-SVGS = ["contrib-heatmap.svg", "ascii.svg", "info-card.svg"]
+SVGS = ["contrib-heatmap.svg", "about.svg", "ascii.svg", "info-card.svg"]
 OUT_DIR = "scratch"
 ANIM = re.compile(r"<animate(?:Transform|Motion)?\b[^>]*/>|"
                   r"<animate(?:Transform|Motion)?\b.*?</animate"
@@ -37,6 +37,8 @@ PAGE = """<!doctype html>
 <div class="wrap">
   <h3><code>jimhoggey@github ~ $ ./contributions.sh</code></h3>
   <object type="image/svg+xml" data="{h}" width="860" height="191"></object>
+  <h3><code>jimhoggey@github ~ $ cat about.txt</code></h3>
+  <object type="image/svg+xml" data="{b}" width="860" height="208"></object>
   <h3><code>jimhoggey@github ~ $ whoami</code></h3>
   <table><tr>
     <td><object type="image/svg+xml" data="{a}" width="370" height="389"></object></td>
@@ -152,15 +154,16 @@ def main():
             fh.write(PAGE.format(
                 title=kind,
                 h=SVGS[0].replace(".svg", suffix),
-                a=SVGS[1].replace(".svg", suffix),
-                i=SVGS[2].replace(".svg", suffix)))
+                b=SVGS[1].replace(".svg", suffix),
+                a=SVGS[2].replace(".svg", suffix),
+                i=SVGS[3].replace(".svg", suffix)))
 
     if problems:
         print("\nFAIL")
         for p in problems:
             print("  -", p)
         return 1
-    print("\nOK -- all three parse, degrade visibly, and line up")
+    print(f"\nOK -- all {len(SVGS)} parse, degrade visibly, and line up")
     return 0
 
 

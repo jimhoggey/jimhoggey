@@ -40,6 +40,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           python scripts/render_heatmap_svg.py
+          python scripts/make_about_svg.py
           python scripts/make_ascii_svg.py
           python scripts/make_info_card.py
 
@@ -50,5 +51,5 @@ jobs:
         with:
           commit_message: "chore: refresh profile art [skip ci]"
           file_pattern: >-
-            data/contributions.json contrib-heatmap.svg ascii.svg
-            info-card.svg
+            data/contributions.json contrib-heatmap.svg about.svg
+            ascii.svg info-card.svg

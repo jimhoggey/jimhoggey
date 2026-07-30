@@ -6,6 +6,12 @@
 
 <br /><br />
 
+<h3><code>jimhoggey@github ~ $ cat about.txt</code></h3>
+
+<img src="./about.svg" width="860" alt="I build AI-powered software that solves real problems for real people. Into LLMs, AI agents, automation and workflow integration - tools that augment how people work, remove the repetitive, and unlock things that weren't possible before." />
+
+<br /><br />
+
 <h3><code>jimhoggey@github ~ $ whoami</code></h3>
 
 <table>
@@ -29,13 +35,14 @@
 <details>
 <summary><b>How this page is built</b></summary>
 
-Three self-contained SVGs. GitHub strips JavaScript from rendered markdown but
+Four self-contained SVGs. GitHub strips JavaScript from rendered markdown but
 happily renders SMIL animation inside an `<img>`, so all the motion lives in
 the SVG files themselves — no GIFs, no external services, nothing to rate-limit.
 
 | File | What it is | Source of truth |
 |---|---|---|
 | `contrib-heatmap.svg` | 53×7 grid, cells sweep in diagonally | scraped from the public contributions calendar |
+| `about.svg` | the blurb, typed out character by character | hand-written in `make_about_svg.py` |
 | `ascii.svg` | avatar as a density-ramp portrait, wiped in row by row | `github.com/jimhoggey.png` |
 | `info-card.svg` | neofetch-style summary, staggered fade-in | GitHub REST API |
 
@@ -47,9 +54,10 @@ pip install -r scripts/requirements.txt
 
 python scripts/fetch_contributions.py   # -> data/contributions.json
 python scripts/render_heatmap_svg.py    # -> contrib-heatmap.svg
+python scripts/make_about_svg.py        # -> about.svg
 python scripts/make_ascii_svg.py        # -> ascii.svg
 python scripts/make_info_card.py        # -> info-card.svg
-python scripts/check_svgs.py            # validates all three
+python scripts/check_svgs.py            # validates all four
 ```
 
 `make_info_card.py` reads `GITHUB_TOKEN` if it is set, purely to avoid the
@@ -83,7 +91,7 @@ every animation and asserting nothing is left hidden.
 ### Staying fresh
 
 [`update-profile-art.yml`](.github/workflows/update-profile-art.yml) re-renders
-all three daily at 06:17 UTC and commits anything that changed. GitHub proxies
+all four daily at 06:17 UTC and commits anything that changed. GitHub proxies
 README images through its own cache, so an update can take a little while to
 appear.
 
