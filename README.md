@@ -6,13 +6,13 @@
 
 <br /><br />
 
-<h3><code>jimhoggey@github ~ $ cat about.txt</code></h3>
+
 
 <img src="./about.svg" width="860" alt="I build AI-powered software that solves real problems for real people. Into LLMs, AI agents, automation and workflow integration - tools that augment how people work, remove the repetitive, and unlock things that weren't possible before." />
 
 <br /><br />
 
-<h3><code>jimhoggey@github ~ $ whoami</code></h3>
+
 
 <table>
   <tr>
