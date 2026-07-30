@@ -1,6 +1,6 @@
 <div align="center">
 
-<h3><code>jimhoggey@github ~ $ ./contributions.sh</code></h3>
+
 
 <img src="./contrib-heatmap.svg" width="860" alt="Contribution heatmap for the last 53 weeks" />
 
