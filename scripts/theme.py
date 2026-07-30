@@ -84,6 +84,16 @@ def reveal(attr, hidden, shown, delay, dur, splines=None):
             f'keyTimes="0;{hold:.4f};1"{extra}/>')
 
 
+def prompt(x, y, command, delay, font=13.5, dur=0.35):
+    """A `user@github ~ $ command` line introducing a section."""
+    return (f'  <text x="{x:.1f}" y="{y:.1f}" font-family="{MONO}" '
+            f'font-size="{font}">'
+            f'<tspan fill="{CYAN}">{USER}@github</tspan>'
+            f'<tspan fill="{DIM}"> ~ $ </tspan>'
+            f'<tspan fill="{TEXT}">{esc(command)}</tspan>'
+            f'{reveal("opacity", 0, 1, delay, dur)}</text>\n')
+
+
 def blink_cursor(x, y, w=5, h=10, begin=0.0, color=PURPLE):
     """A block cursor that blinks forever, and sits solid if SMIL is off."""
     return f"""  <rect x="{x:.1f}" y="{y:.1f}" width="{w}" height="{h}" fill="{color}">

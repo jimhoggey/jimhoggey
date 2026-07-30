@@ -1,29 +1,9 @@
 <div align="center">
 
-
-
-<img src="./contrib-heatmap.svg" width="860" alt="Contribution heatmap for the last 53 weeks" />
-
-<br /><br />
-
-
-
-<img src="./about.svg" width="860" alt="I build AI-powered software that solves real problems for real people. Into LLMs, AI agents, automation and workflow integration - tools that augment how people work, remove the repetitive, and unlock things that weren't possible before." />
-
-<br /><br />
-
-
-
-<table>
-  <tr>
-    <td valign="top"><img src="./ascii.svg" width="370" alt="ASCII-art portrait rendered from my avatar" /></td>
-    <td valign="top"><img src="./info-card.svg" width="490" alt="neofetch-style profile summary" /></td>
-  </tr>
-</table>
-
-<br />
+<img src="./profile.svg" alt="jimhoggey on GitHub — a terminal window showing a contribution heatmap, an about blurb, an ASCII-art portrait of the avatar, and a neofetch-style summary of repos, stars and languages" />
 
 <a href="https://www.fynnjammer.com"><b>fynnjammer.com</b></a> &nbsp;·&nbsp;
+<a href="https://jimhoggey.github.io/jimhoggey/"><b>this page, larger</b></a> &nbsp;·&nbsp;
 <a href="https://github.com/jimhoggey/Runsheetpilot"><b>Runsheetpilot</b></a> &nbsp;·&nbsp;
 <a href="https://github.com/jimhoggey/service-visuals"><b>service-visuals</b></a> &nbsp;·&nbsp;
 <a href="https://github.com/jimhoggey/SelfdrivingcarForza"><b>SelfdrivingcarForza</b></a>
@@ -35,49 +15,53 @@
 <details>
 <summary><b>How this page is built</b></summary>
 
-Four self-contained SVGs. GitHub strips JavaScript from rendered markdown but
-happily renders SMIL animation inside an `<img>`, so all the motion lives in
-the SVG files themselves — no GIFs, no external services, nothing to rate-limit.
+One self-contained SVG. GitHub strips JavaScript from rendered markdown but
+happily renders SMIL animation inside an `<img>`, so all the motion lives in the
+SVG itself — no GIFs, no external services, nothing to rate-limit.
 
-| File | What it is | Source of truth |
+It is deliberately a *single* file rather than one image per section. Four
+separate images cannot sit flush in a README: GitHub puts each in its own block
+with margins, and each would carry its own window chrome, so the page reads as
+four floating cards instead of one terminal session.
+
+| Section | Animation | Source of truth |
 |---|---|---|
-| `contrib-heatmap.svg` | 53×7 grid, cells sweep in diagonally | scraped from the public contributions calendar |
-| `about.svg` | the blurb, typed out character by character | hand-written in `make_about_svg.py` |
-| `ascii.svg` | avatar as a density-ramp portrait, wiped in row by row | `github.com/jimhoggey.png` |
-| `info-card.svg` | neofetch-style summary, staggered fade-in | GitHub REST API |
+| `./contributions.sh` | 53×7 grid, cells sweep in diagonally | scraped from the public contributions calendar |
+| `cat about.txt` | each line typed character by character | hand-written in `scripts/about.py` |
+| `whoami` (portrait) | avatar as density-ramp art, **retyped every 15s** | `github.com/jimhoggey.png` |
+| `whoami` (card) | neofetch summary, staggered fade-in | GitHub REST API |
 
-### Generating them
+### Generating it
 
 ```bash
 python -m venv .venv && source .venv/bin/activate
 pip install -r scripts/requirements.txt
 
 python scripts/fetch_contributions.py   # -> data/contributions.json
-python scripts/render_heatmap_svg.py    # -> contrib-heatmap.svg
-python scripts/make_about_svg.py        # -> about.svg
-python scripts/make_ascii_svg.py        # -> ascii.svg
-python scripts/make_info_card.py        # -> info-card.svg
-python scripts/check_svgs.py            # validates all four
+python scripts/make_profile_svg.py      # -> profile.svg
+python scripts/check_svgs.py            # validates it
 ```
 
-`make_info_card.py` reads `GITHUB_TOKEN` if it is set, purely to avoid the
-unauthenticated API rate limit. Only public data is ever read, so nothing from
-a private repo can leak into the card.
+`scripts/make_profile_svg.py` is the composer; each section lives in its own
+module (`heatmap.py`, `about.py`, `ascii_art.py`, `infocard.py`) and returns a
+positionable fragment plus its height, so the composer just stacks them and
+draws one window frame around the lot.
 
-`make_ascii_svg.py` accepts an optional image path if you would rather not use
-the avatar:
+It reads `GITHUB_TOKEN` if set, purely to avoid the unauthenticated API rate
+limit. Only public endpoints are used, so nothing from a private repo can reach
+the card. To use a photo instead of the avatar:
 
 ```bash
-python scripts/make_ascii_svg.py some-photo.png
+python scripts/make_profile_svg.py some-photo.png
 ```
 
-### Two details worth knowing
+### Three details worth knowing
 
-**Whitespace.** SVG collapses runs of whitespace, so ASCII art built as
-`<text>` rows with space padding falls apart — the surviving glyphs bunch up and
-the grid shears. `make_ascii_svg.py` drops spaces entirely and gives every
-remaining glyph an explicit `x`, which also pins the art to an exact grid no
-matter which monospace font the renderer picks.
+**Whitespace.** SVG collapses runs of whitespace, so ASCII art built as `<text>`
+rows with space padding falls apart — the surviving glyphs bunch up and the grid
+shears. `ascii_art.py` drops spaces entirely and gives every remaining glyph an
+explicit `x`, which also pins the art to an exact grid no matter which monospace
+font the renderer picks.
 
 **Graceful degradation.** The usual way to stagger an entrance is `opacity="0"`
 plus an animation that freezes at `1`. Anything that renders SVG *without*
@@ -88,11 +72,15 @@ not freeze, so it falls back to the element's own value. No SMIL means no
 animation and a fully visible page. `check_svgs.py` enforces this by stripping
 every animation and asserting nothing is left hidden.
 
+**The looping portrait.** The ASCII rows animate on a 15-second cycle with
+`repeatCount="indefinite"`: wipe in, hold, clear, repeat. Because the loop never
+freezes either, the no-SMIL fallback is still the finished portrait.
+
 ### Staying fresh
 
 [`update-profile-art.yml`](.github/workflows/update-profile-art.yml) re-renders
-all four daily at 06:17 UTC and commits anything that changed. GitHub proxies
-README images through its own cache, so an update can take a little while to
-appear.
+`profile.svg` daily at 06:17 UTC and commits it if anything changed. GitHub
+proxies README images through its own cache, so an update can take a little
+while to appear.
 
 </details>

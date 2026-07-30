@@ -34,15 +34,11 @@ jobs:
       - name: Fetch contribution calendar
         run: python scripts/fetch_contributions.py
 
-      - name: Render SVGs
+      - name: Render profile.svg
         env:
           # Only lifts the API rate limit; the scripts read public data only.
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          python scripts/render_heatmap_svg.py
-          python scripts/make_about_svg.py
-          python scripts/make_ascii_svg.py
-          python scripts/make_info_card.py
+        run: python scripts/make_profile_svg.py
 
       - name: Validate output
         run: python scripts/check_svgs.py
@@ -50,6 +46,4 @@ jobs:
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: refresh profile art [skip ci]"
-          file_pattern: >-
-            data/contributions.json contrib-heatmap.svg about.svg
-            ascii.svg info-card.svg
+          file_pattern: "data/contributions.json profile.svg"

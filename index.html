@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>jimhoggey — terminal</title>
+<meta name="description" content="I build AI-powered software that solves real problems for real people. Into LLMs, AI agents, automation and workflow integration.">
+<meta name="color-scheme" content="dark">
+<meta property="og:title" content="jimhoggey">
+<meta property="og:description" content="I build AI-powered software that solves real problems for real people.">
+<meta property="og:image" content="https://jimhoggey.github.io/jimhoggey/profile.svg">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' rx='3' fill='%230b0912'/><text x='3' y='12' font-size='10' fill='%23b57bff' font-family='monospace'>$</text></svg>">
+<style>
+  /* Without this, GitHub Pages hands the README to Jekyll's default theme,
+     which is light -- the dark terminal then sits on a white page. */
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    min-height: 100vh;
+    background: #08070d;
+    background-image:
+      radial-gradient(ellipse 80% 60% at 50% -10%, #1d1436 0%, transparent 70%),
+      radial-gradient(ellipse 60% 50% at 90% 100%, #12203a 0%, transparent 70%);
+    color: #ded9ec;
+    font: 15px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+    padding: 32px 16px 40px;
+  }
+  main { width: 100%; max-width: 900px; }
+  /* The SVG carries its own frame, so all this needs to do is not clip it. */
+  img { display: block; width: 100%; height: auto; border-radius: 10px; }
+  nav { display: flex; flex-wrap: wrap; gap: 6px 20px; justify-content: center;
+        font-size: 13px; }
+  a { color: #5ff0ff; text-decoration: none; }
+  a:hover, a:focus-visible { color: #d9b8ff; text-decoration: underline; }
+  .dim { color: #6f6790; }
+</style>
+</head>
+<body>
+  <main>
+    <img src="./profile.svg" width="900" height="821"
+         alt="Terminal-style profile for jimhoggey: contribution heatmap, an
+              about blurb, an ASCII-art portrait of the avatar, and a
+              neofetch-style summary of repos, stars and languages.">
+  </main>
+  <nav>
+    <a href="https://github.com/jimhoggey">github</a>
+    <a href="https://www.fynnjammer.com">fynnjammer.com</a>
+    <a href="https://github.com/jimhoggey/Runsheetpilot">Runsheetpilot</a>
+    <a href="https://github.com/jimhoggey/service-visuals">service-visuals</a>
+    <a href="https://github.com/jimhoggey/SelfdrivingcarForza">SelfdrivingcarForza</a>
+  </nav>
+  <p class="dim">rendered daily by
+    <a href="https://github.com/jimhoggey/jimhoggey">a GitHub Action</a></p>
+</body>
+</html>
