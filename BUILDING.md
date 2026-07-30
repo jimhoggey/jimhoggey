@@ -13,7 +13,8 @@ four floating cards instead of one terminal session.
 
 | Section | Animation | Source of truth |
 |---|---|---|
-| `./contributions.sh` | 53×7 grid, cells sweep in diagonally | scraped from the public contributions calendar |
+| `./contributions.sh` (left) | 26×7 grid, cells sweep in diagonally | scraped from the public contributions calendar |
+| `./contributions.sh` (right) | project spotlight, highlight chases the logo ring | hardcoded in `scripts/spotlight.py` |
 | `cat about.txt` | each line typed character by character | hand-written in `scripts/about.py` |
 | `whoami` (portrait) | avatar as density-ramp art, **retyped every 15s** | `github.com/jimhoggey.png` |
 | `whoami` (card) | neofetch summary, staggered fade-in | GitHub REST API |
@@ -30,7 +31,8 @@ python scripts/check_svgs.py            # validates it
 ```
 
 `scripts/make_profile_svg.py` is the composer; each section lives in its own
-module (`heatmap.py`, `about.py`, `ascii_art.py`, `infocard.py`) and returns a
+module (`heatmap.py`, `spotlight.py`, `about.py`, `ascii_art.py`,
+`infocard.py`) and returns a
 positionable fragment plus its height, so the composer just stacks them and
 draws one window frame around the lot.
 
@@ -42,7 +44,7 @@ the card. To use a photo instead of the avatar:
 python scripts/make_profile_svg.py some-photo.png
 ```
 
-### Three details worth knowing
+### Details worth knowing
 
 **Whitespace.** SVG collapses runs of whitespace, so ASCII art built as `<text>`
 rows with space padding falls apart — the surviving glyphs bunch up and the grid
@@ -62,6 +64,11 @@ every animation and asserting nothing is left hidden.
 **The looping portrait.** The ASCII rows animate on a 15-second cycle with
 `repeatCount="indefinite"`: wipe in, hold, clear, repeat. Because the loop never
 freezes either, the no-SMIL fallback is still the finished portrait.
+
+**Honest captions.** The heatmap shows the most recent 26 weeks, because a full
+53 is mostly empty cells. Its caption is recomputed over just that window rather
+than reused from the full-year JSON — otherwise a half-year graph would sit under
+a full-year total.
 
 ### Staying fresh
 
