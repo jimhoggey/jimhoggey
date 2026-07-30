@@ -17,7 +17,7 @@ GAP = 3
 STEP = CELL + GAP
 LABEL_W = 30          # gutter for the Mon/Wed/Fri labels
 MONTH_H = 18          # gutter for the month labels
-WEEKS = 53
+WEEKS = 26            # half a year; a full 53 weeks is mostly empty
 ROWS = 7
 
 GRID_W = WEEKS * STEP - GAP
@@ -59,9 +59,49 @@ def month_labels(days):
     return labels
 
 
+def recent(days, weeks=WEEKS):
+    """The most recent `weeks` columns, re-indexed from zero."""
+    last = max(d["col"] for d in days)
+    first = max(0, last + 1 - weeks)
+    out = []
+    for day in days:
+        if day["col"] >= first:
+            shifted = dict(day)
+            shifted["col"] = day["col"] - first
+            out.append(shifted)
+    return out
+
+
+def summarise(days):
+    """Stats for exactly the days shown, so the caption cannot overstate them."""
+    today = date.today().isoformat()
+    past = [d for d in days if d["date"] <= today]
+
+    longest = run = 0
+    for day in past:
+        run = run + 1 if day["count"] > 0 else 0
+        longest = max(longest, run)
+
+    current = 0
+    for day in reversed(past):
+        if day["count"] > 0:
+            current += 1
+        else:
+            break
+
+    return {
+        "total": sum(d["count"] for d in days),
+        "active": sum(1 for d in days if d["count"] > 0),
+        "best": max((d["count"] for d in days), default=0),
+        "current": current,
+        "longest": longest,
+    }
+
+
 def build(x, y, data):
     """Render the heatmap at (x, y). Returns (fragment, width, height)."""
-    days = data["days"]
+    days = recent(data["days"])
+    stats = summarise(days)
     today = date.today().isoformat()
     gx = x + LABEL_W
     gy = y + MONTH_H
@@ -142,13 +182,11 @@ def build(x, y, data):
 
     # Footer: totals on the left, level legend right-aligned to the grid.
     footer_y = gy + ROWS * STEP + 15
-    streak = data["streaks"]
     # Single spaces only: SVG collapses runs of whitespace, so separators must
     # be real glyphs.
-    summary = (f'{data["total"]} contributions · '
-               f'{data["active_days"]} active days · '
-               f'best day {data["best_day"]} · '
-               f'streak {streak["current"]}d (longest {streak["longest"]}d)')
+    summary = (f'{WEEKS}w · {stats["total"]} contributions · '
+               f'{stats["active"]} active days · best {stats["best"]} · '
+               f'streak {stats["current"]}d')
     last_cell = (WEEKS - 1 + ROWS - 1) * DIAG + POP
 
     parts.append(f'  <g font-family="{MONO}" font-size="9.5">'
@@ -157,17 +195,6 @@ def build(x, y, data):
                  f'<tspan fill="{CYAN}">&gt;</tspan> '
                  f'<tspan fill="{TEXT}">{esc(summary)}</tspan></text>')
 
-    right = gx + GRID_W
-    legend_x = right - 30 - 5 * STEP
-    parts.append(f'    <text x="{legend_x - 8}" y="{footer_y}" '
-                 f'text-anchor="end" fill="{DIM}">Less</text>')
-    for level in range(5):
-        parts.append(
-            f'    <rect x="{legend_x + level * STEP}" y="{footer_y - 9}" '
-            f'width="{CELL}" height="{CELL}" rx="2.5" fill="{HEAT[level]}"/>')
-    parts.append(
-        f'    <text x="{legend_x + 4 * STEP + CELL + 8}" y="{footer_y}" '
-        f'fill="{DIM}">More</text>')
     parts.append("  </g>")
 
     return "\n".join(parts) + "\n", LABEL_W + GRID_W, footer_y - y + 5

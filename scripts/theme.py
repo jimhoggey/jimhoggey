@@ -17,6 +17,8 @@ PURPLE = "#b57bff"      # primary accent
 PURPLE_HI = "#d9b8ff"   # highlight
 CYAN = "#5ff0ff"        # secondary accent
 MAGENTA = "#ff7bd5"     # tertiary accent
+AMBER = "#f5b524"       # spotlight accent, taken from the project's own logo
+AMBER_DIM = "#8a6620"   # unlit segments of the spotlight ring
 
 # Contribution levels 0-4, dark -> bright purple.
 HEAT = ["#181327", "#3a2370", "#6337bd", "#9a63ff", "#cbaaff"]

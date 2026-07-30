@@ -16,6 +16,7 @@ import about
 import ascii_art
 import heatmap
 import infocard
+import spotlight
 from theme import BG, BORDER, CYAN, DIM, MONO, PURPLE_HI, USER, blink_cursor
 from theme import prompt as prompt_line
 from theme import window_chrome
@@ -27,6 +28,7 @@ WIDTH = 900
 PAD = 26              # left/right content margin
 BAR_H = 30            # window title bar
 GUTTER = 36           # space between the portrait and the card
+SPOTLIGHT_GAP = 40    # space between the heatmap and the spotlight
 SECTION_GAP = 30      # blank line between sections
 PROMPT_DROP = 22      # from a prompt's baseline to its output
 
@@ -36,11 +38,14 @@ def build(data, card, rows):
     y = BAR_H + 26
     delay = 0.15
 
-    # $ ./contributions.sh
+    # $ ./contributions.sh -- heatmap on the left, spotlight filling the space
+    # its other half used to waste.
     body.append(prompt_line(PAD, y, "./contributions.sh", delay))
     y += PROMPT_DROP
-    frag, _, height = heatmap.build(PAD, y, data)
+    frag, grid_w, height = heatmap.build(PAD, y, data)
     body.append(frag)
+    card_x = PAD + grid_w + SPOTLIGHT_GAP
+    body.append(spotlight.build(card_x, y, WIDTH - PAD - card_x, height))
     y += height + SECTION_GAP
 
     # $ cat about.txt
