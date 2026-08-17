@@ -1193,15 +1193,15 @@
     <animateTransform attributeName="transform" type="translate" begin="0s" dur="7.00s" values="-8 0;-8 0;0 0" keyTimes="0;0.9358;1"/>
     <text x="409.8" y="577.5" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="11.0" fill="#b57bff">synced</text>
     <text x="475.8" y="577.5" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="11.0" fill="#6f6790">:</text>
-    <text x="485.8" y="577.5" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="11.0" fill="#6f6790">2026-08-17 06:06 UTC</text>
+    <text x="485.8" y="577.5" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="11.0" fill="#6f6790">2026-08-17 06:09 UTC</text>
   </g>
   <text x="409.8" y="605.0" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="9.5" fill="#6f6790">languages by bytes<animate attributeName="opacity" begin="0s" dur="7.09s" values="0;0;1" keyTimes="0;0.9365;1"/></text>
   <g>
     <animate attributeName="opacity" begin="0s" dur="7.17s" values="0;0;1" keyTimes="0;0.9373;1"/>
     <text x="409.8" y="622.0" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="9.5" fill="#ded9ec">Python</text>
     <rect x="493.8" y="616.0" width="260.0" height="7.0" rx="3.5" fill="#2b2440" opacity="0.55"/>
-    <rect x="493.8" y="616.0" width="181.4" height="7.0" rx="3.5" fill="#d9b8ff">
-      <animate attributeName="width" begin="0s" dur="7.62s" values="0;0;181.4" keyTimes="0;0.8820;1" calcMode="spline" keySplines="0 0 1 1;0.22 1 0.36 1"/>
+    <rect x="493.8" y="616.0" width="181.5" height="7.0" rx="3.5" fill="#d9b8ff">
+      <animate attributeName="width" begin="0s" dur="7.62s" values="0;0;181.5" keyTimes="0;0.8820;1" calcMode="spline" keySplines="0 0 1 1;0.22 1 0.36 1"/>
     </rect>
     <text x="761.8" y="622.0" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="9.5" fill="#6f6790">69.8%</text>
   </g>
