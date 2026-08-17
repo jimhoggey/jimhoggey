@@ -21,6 +21,9 @@ from theme import (BORDER, CYAN, DIM, MAGENTA, MONO, PURPLE, PURPLE_HI, TEXT,
 API = "https://api.github.com"
 
 # Hand-written lines: the things an API cannot infer.
+# The site's name; its address comes from the profile's own website field, so
+# changing that field is enough to remap every reference here.
+SITE_NAME = "Fynn Projects"
 FOCUS = "LLMs · AI agents · automation · workflow integration"
 STACK = "python · javascript · + whatever the model swears is best"
 STATUS = "in the flow state, building AI that actually helps people"
@@ -52,6 +55,23 @@ def _get(sess, path):
     resp = sess.get(f"{API}{path}", timeout=30)
     resp.raise_for_status()
     return resp.json()
+
+
+def _site(blog):
+    """The website row: the site's name, plus its bare domain.
+
+    The domain is whatever the profile's website field points at, so the card
+    cannot drift from the profile the way a hardcoded URL does -- which is how
+    it ended up advertising a domain that no longer resolved.
+    """
+    domain = (blog or "").strip()
+    for prefix in ("https://", "http://", "www."):
+        if domain.startswith(prefix):
+            domain = domain[len(prefix):]
+    domain = domain.rstrip("/")
+    if not domain:
+        return SITE_NAME
+    return f"{SITE_NAME} ({domain})"
 
 
 def gather():
@@ -88,8 +108,7 @@ def gather():
 
     return {
         "name": user.get("name") or USER,
-        "blog": (user.get("blog") or "").replace("https://", "")
-                                        .replace("http://", "") or "-",
+        "blog": _site(user.get("blog")),
         "public_repos": user.get("public_repos", 0),
         "followers": user.get("followers", 0),
         "stars": sum(r.get("stargazers_count", 0) for r in owned),

@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="821" viewBox="0 0 900 821" role="img" aria-label="jimhoggey on GitHub: 400 contributions, 8 public repos, 16 stars. I build AI-powered software that solves real problems for real people. Into LLMs, AI agents, automation and workflow integration - tools that augment how people work, remove the repetitive, and unlock things that weren't possible before.">
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="821" viewBox="0 0 900 821" role="img" aria-label="jimhoggey on GitHub: 412 contributions, 9 public repos, 16 stars. I build AI-powered software that solves real problems for real people. Into LLMs, AI agents, automation and workflow integration - tools that augment how people work, remove the repetitive, and unlock things that weren't possible before.">
   <rect x="0.5" y="0.5" width="899" height="820" rx="9"
         fill="#0b0912" stroke="#2b2440" stroke-width="1"/>
   <path d="M0.5 9.5a9 9 0 0 1 9-9h880a9 9 0 0 1 9 9v20H0.5z"
@@ -825,13 +825,19 @@
       <animateTransform attributeName="transform" type="scale" begin="0s" dur="0.97s" values="0.2;0.2;1" keyTimes="0;0.5670;1" additive="sum"/>
       <animateTransform attributeName="transform" type="translate" begin="0s" dur="0.97s" values="349.6 81.6;349.6 81.6;0 0" keyTimes="0;0.5670;1" additive="sum"/>
     </rect>
-    <rect x="429.5" y="94.5" width="15" height="15" rx="3.5" fill="none" stroke="#d9b8ff" stroke-width="1.2">
-      <animate attributeName="opacity" values="1;0.3;1" dur="2.4s" begin="0.97s" repeatCount="indefinite"/>
+
+    <rect x="431" y="111" width="12" height="12" rx="2.5" fill="#3a2370">
+      <animate attributeName="opacity" begin="0s" dur="0.99s" values="0;0;1" keyTimes="0;0.5766;1"/>
+      <animateTransform attributeName="transform" type="scale" begin="0s" dur="0.99s" values="0.2;0.2;1" keyTimes="0;0.5766;1" additive="sum"/>
+      <animateTransform attributeName="transform" type="translate" begin="0s" dur="0.99s" values="349.6 93.6;349.6 93.6;0 0" keyTimes="0;0.5766;1" additive="sum"/>
+    </rect>
+    <rect x="429.5" y="109.5" width="15" height="15" rx="3.5" fill="none" stroke="#d9b8ff" stroke-width="1.2">
+      <animate attributeName="opacity" values="1;0.3;1" dur="2.4s" begin="0.99s" repeatCount="indefinite"/>
     </rect>
 
   </g>
   <g font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="9.5"><animate attributeName="opacity" begin="0s" dur="1.70s" values="0;0;1" keyTimes="0;0.6475;1"/>
-    <text x="56" y="216" fill="#6f6790"><tspan fill="#5ff0ff">&gt;</tspan> <tspan fill="#ded9ec">26w · 400 contributions · 44 active days · best 40 · streak 18d</tspan></text>
+    <text x="56" y="216" fill="#6f6790"><tspan fill="#5ff0ff">&gt;</tspan> <tspan fill="#ded9ec">26w · 412 contributions · 45 active days · best 40 · streak 19d</tspan></text>
   </g>
   <rect x="483.5" y="78.5" width="390.0" height="142.0" rx="7" fill="#100e1a" stroke="#2b2440" stroke-width="1"/>
   <text x="499.0" y="97.0" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="9.5" fill="#6f6790">recently worked on</text>
@@ -1145,7 +1151,7 @@
     <animateTransform attributeName="transform" type="translate" begin="0s" dur="6.49s" values="-8 0;-8 0;0 0" keyTimes="0;0.9307;1"/>
     <text x="409.8" y="472.5" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="11.0" fill="#b57bff">web</text>
     <text x="475.8" y="472.5" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="11.0" fill="#6f6790">:</text>
-    <text x="485.8" y="472.5" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="11.0" fill="#5ff0ff">www.fynnjammer.com</text>
+    <text x="485.8" y="472.5" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="11.0" fill="#5ff0ff">Fynn Projects (fynnprojets.pages.dev)</text>
   </g>
   <g>
     <animate attributeName="opacity" begin="0s" dur="6.58s" values="0;0;1" keyTimes="0;0.9316;1"/>
@@ -1159,7 +1165,7 @@
     <animateTransform attributeName="transform" type="translate" begin="0s" dur="6.66s" values="-8 0;-8 0;0 0" keyTimes="0;0.9325;1"/>
     <text x="409.8" y="507.5" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="11.0" fill="#b57bff">repos</text>
     <text x="475.8" y="507.5" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="11.0" fill="#6f6790">:</text>
-    <text x="485.8" y="507.5" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="11.0" fill="#ded9ec">8 public · 16 stars · 2 followers</text>
+    <text x="485.8" y="507.5" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="11.0" fill="#ded9ec">9 public · 16 stars · 2 followers</text>
   </g>
   <g>
     <animate attributeName="opacity" begin="0s" dur="6.75s" values="0;0;1" keyTimes="0;0.9333;1"/>
@@ -1187,42 +1193,42 @@
     <animateTransform attributeName="transform" type="translate" begin="0s" dur="7.00s" values="-8 0;-8 0;0 0" keyTimes="0;0.9358;1"/>
     <text x="409.8" y="577.5" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="11.0" fill="#b57bff">synced</text>
     <text x="475.8" y="577.5" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="11.0" fill="#6f6790">:</text>
-    <text x="485.8" y="577.5" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="11.0" fill="#6f6790">2026-08-16 07:01 UTC</text>
+    <text x="485.8" y="577.5" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="11.0" fill="#6f6790">2026-08-17 06:06 UTC</text>
   </g>
   <text x="409.8" y="605.0" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="9.5" fill="#6f6790">languages by bytes<animate attributeName="opacity" begin="0s" dur="7.09s" values="0;0;1" keyTimes="0;0.9365;1"/></text>
   <g>
     <animate attributeName="opacity" begin="0s" dur="7.17s" values="0;0;1" keyTimes="0;0.9373;1"/>
     <text x="409.8" y="622.0" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="9.5" fill="#ded9ec">Python</text>
     <rect x="493.8" y="616.0" width="260.0" height="7.0" rx="3.5" fill="#2b2440" opacity="0.55"/>
-    <rect x="493.8" y="616.0" width="182.4" height="7.0" rx="3.5" fill="#d9b8ff">
-      <animate attributeName="width" begin="0s" dur="7.62s" values="0;0;182.4" keyTimes="0;0.8820;1" calcMode="spline" keySplines="0 0 1 1;0.22 1 0.36 1"/>
+    <rect x="493.8" y="616.0" width="181.4" height="7.0" rx="3.5" fill="#d9b8ff">
+      <animate attributeName="width" begin="0s" dur="7.62s" values="0;0;181.4" keyTimes="0;0.8820;1" calcMode="spline" keySplines="0 0 1 1;0.22 1 0.36 1"/>
     </rect>
-    <text x="761.8" y="622.0" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="9.5" fill="#6f6790">70.1%</text>
+    <text x="761.8" y="622.0" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="9.5" fill="#6f6790">69.8%</text>
   </g>
   <g>
     <animate attributeName="opacity" begin="0s" dur="7.26s" values="0;0;1" keyTimes="0;0.9380;1"/>
     <text x="409.8" y="638.5" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="9.5" fill="#ded9ec">JavaScript</text>
     <rect x="493.8" y="632.5" width="260.0" height="7.0" rx="3.5" fill="#2b2440" opacity="0.55"/>
-    <rect x="493.8" y="632.5" width="33.9" height="7.0" rx="3.5" fill="#b57bff">
-      <animate attributeName="width" begin="0s" dur="7.71s" values="0;0;33.9" keyTimes="0;0.8833;1" calcMode="spline" keySplines="0 0 1 1;0.22 1 0.36 1"/>
+    <rect x="493.8" y="632.5" width="34.3" height="7.0" rx="3.5" fill="#b57bff">
+      <animate attributeName="width" begin="0s" dur="7.71s" values="0;0;34.3" keyTimes="0;0.8833;1" calcMode="spline" keySplines="0 0 1 1;0.22 1 0.36 1"/>
     </rect>
-    <text x="761.8" y="638.5" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="9.5" fill="#6f6790">13.0%</text>
+    <text x="761.8" y="638.5" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="9.5" fill="#6f6790">13.2%</text>
   </g>
   <g>
     <animate attributeName="opacity" begin="0s" dur="7.34s" values="0;0;1" keyTimes="0;0.9387;1"/>
     <text x="409.8" y="655.0" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="9.5" fill="#ded9ec">CSS</text>
     <rect x="493.8" y="649.0" width="260.0" height="7.0" rx="3.5" fill="#2b2440" opacity="0.55"/>
-    <rect x="493.8" y="649.0" width="16.8" height="7.0" rx="3.5" fill="#5ff0ff">
-      <animate attributeName="width" begin="0s" dur="7.79s" values="0;0;16.8" keyTimes="0;0.8845;1" calcMode="spline" keySplines="0 0 1 1;0.22 1 0.36 1"/>
+    <rect x="493.8" y="649.0" width="17.8" height="7.0" rx="3.5" fill="#5ff0ff">
+      <animate attributeName="width" begin="0s" dur="7.79s" values="0;0;17.8" keyTimes="0;0.8845;1" calcMode="spline" keySplines="0 0 1 1;0.22 1 0.36 1"/>
     </rect>
-    <text x="761.8" y="655.0" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="9.5" fill="#6f6790">6.5%</text>
+    <text x="761.8" y="655.0" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="9.5" fill="#6f6790">6.9%</text>
   </g>
   <g>
     <animate attributeName="opacity" begin="0s" dur="7.43s" values="0;0;1" keyTimes="0;0.9394;1"/>
     <text x="409.8" y="671.5" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="9.5" fill="#ded9ec">HTML</text>
     <rect x="493.8" y="665.5" width="260.0" height="7.0" rx="3.5" fill="#2b2440" opacity="0.55"/>
-    <rect x="493.8" y="665.5" width="14.8" height="7.0" rx="3.5" fill="#ff7bd5">
-      <animate attributeName="width" begin="0s" dur="7.88s" values="0;0;14.8" keyTimes="0;0.8858;1" calcMode="spline" keySplines="0 0 1 1;0.22 1 0.36 1"/>
+    <rect x="493.8" y="665.5" width="14.7" height="7.0" rx="3.5" fill="#ff7bd5">
+      <animate attributeName="width" begin="0s" dur="7.88s" values="0;0;14.7" keyTimes="0;0.8858;1" calcMode="spline" keySplines="0 0 1 1;0.22 1 0.36 1"/>
     </rect>
     <text x="761.8" y="671.5" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="9.5" fill="#6f6790">5.7%</text>
   </g>
@@ -1230,10 +1236,10 @@
     <animate attributeName="opacity" begin="0s" dur="7.51s" values="0;0;1" keyTimes="0;0.9401;1"/>
     <text x="409.8" y="688.0" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="9.5" fill="#ded9ec">TypeScript</text>
     <rect x="493.8" y="682.0" width="260.0" height="7.0" rx="3.5" fill="#2b2440" opacity="0.55"/>
-    <rect x="493.8" y="682.0" width="10.2" height="7.0" rx="3.5" fill="#7c5cff">
-      <animate attributeName="width" begin="0s" dur="7.96s" values="0;0;10.2" keyTimes="0;0.8870;1" calcMode="spline" keySplines="0 0 1 1;0.22 1 0.36 1"/>
+    <rect x="493.8" y="682.0" width="9.8" height="7.0" rx="3.5" fill="#7c5cff">
+      <animate attributeName="width" begin="0s" dur="7.96s" values="0;0;9.8" keyTimes="0;0.8870;1" calcMode="spline" keySplines="0 0 1 1;0.22 1 0.36 1"/>
     </rect>
-    <text x="761.8" y="688.0" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="9.5" fill="#6f6790">3.9%</text>
+    <text x="761.8" y="688.0" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="9.5" fill="#6f6790">3.8%</text>
   </g>
   <text x="409.8" y="716.5" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="9.5" fill="#6f6790">pinned by stars<animate attributeName="opacity" begin="0s" dur="7.60s" values="0;0;1" keyTimes="0;0.9408;1"/></text>
   <text x="409.8" y="732.5" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="9.5"><tspan fill="#d9b8ff">SelfdrivingcarForza</tspan><tspan fill="#6f6790"> · python · 13★</tspan><animate attributeName="opacity" begin="0s" dur="7.68s" values="0;0;1" keyTimes="0;0.9414;1"/></text>
