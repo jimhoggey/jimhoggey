@@ -1,14 +1,14 @@
 {
  "user": "jimhoggey",
- "generated_at": "2026-08-24T07:30:31Z",
+ "generated_at": "2026-08-25T07:10:31Z",
  "start": "2025-08-24",
- "end": "2026-08-24",
- "total": 468,
+ "end": "2026-08-25",
+ "total": 469,
  "best_day": 40,
  "active_days": 52,
  "weeks": 53,
  "streaks": {
-  "current": 26,
+  "current": 0,
   "longest": 26
  },
  "days": [
@@ -2569,9 +2569,16 @@
   },
   {
    "date": "2026-08-24",
-   "count": 3,
+   "count": 4,
    "level": 1,
    "row": 1,
+   "col": 52
+  },
+  {
+   "date": "2026-08-25",
+   "count": 0,
+   "level": 0,
+   "row": 2,
    "col": 52
   }
  ]
