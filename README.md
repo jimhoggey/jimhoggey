@@ -4,9 +4,9 @@
 
 <a href="https://fynnprojects.pages.dev/"><b>Fynn Projects</b></a> &nbsp;·&nbsp;
 <a href="https://jimhoggey.github.io/jimhoggey/"><b>this page, larger</b></a> &nbsp;·&nbsp;
-<a href="https://github.com/jimhoggey/Runsheetpilot"><b>Runsheetpilot</b></a> &nbsp;·&nbsp;
-<a href="https://github.com/jimhoggey/service-visuals"><b>service-visuals</b></a> &nbsp;·&nbsp;
-<a href="https://github.com/jimhoggey/SelfdrivingcarForza"><b>SelfdrivingcarForza</b></a>
+<a href="https://github.com/jimhoggey/RunsheetPilot-App"><b>RunsheetPilot-App</b></a> &nbsp;·&nbsp;
+<a href="https://github.com/jimhoggey/ServiceVisuals-App"><b>ServiceVisuals-App</b></a> &nbsp;·&nbsp;
+<a href="https://github.com/jimhoggey/ForzaSelfDriving-Code"><b>ForzaSelfDriving-Code</b></a>
 
 <br /><br />
 
