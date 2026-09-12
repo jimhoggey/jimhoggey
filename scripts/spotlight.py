@@ -19,7 +19,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from theme import AMBER, AMBER_DIM, BORDER, CYAN, DIM, MONO, PANEL, esc
 
 # Hardcoded for now -- one project, chosen by hand.
-PROJECT = "service-visuals"
+PROJECT = "ServiceVisuals-App"
 META = "python · 1★"
 NUDGE = "↗ take a look"
 
