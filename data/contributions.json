@@ -1,15 +1,15 @@
 {
  "user": "jimhoggey",
- "generated_at": "2026-10-15T11:35:26Z",
+ "generated_at": "2026-10-16T11:29:57Z",
  "start": "2025-10-12",
- "end": "2026-10-15",
- "total": 805,
- "best_day": 40,
- "active_days": 104,
+ "end": "2026-10-16",
+ "total": 949,
+ "best_day": 85,
+ "active_days": 105,
  "weeks": 53,
  "streaks": {
-  "current": 78,
-  "longest": 78
+  "current": 79,
+  "longest": 79
  },
  "days": [
   {
@@ -1471,7 +1471,7 @@
   {
    "date": "2026-05-08",
    "count": 25,
-   "level": 3,
+   "level": 2,
    "row": 5,
    "col": 29
   },
@@ -1569,21 +1569,21 @@
   {
    "date": "2026-05-22",
    "count": 22,
-   "level": 3,
+   "level": 2,
    "row": 5,
    "col": 31
   },
   {
    "date": "2026-05-23",
    "count": 19,
-   "level": 2,
+   "level": 1,
    "row": 6,
    "col": 31
   },
   {
    "date": "2026-05-24",
    "count": 13,
-   "level": 2,
+   "level": 1,
    "row": 0,
    "col": 32
   },
@@ -1863,7 +1863,7 @@
   {
    "date": "2026-07-03",
    "count": 17,
-   "level": 2,
+   "level": 1,
    "row": 5,
    "col": 37
   },
@@ -1968,14 +1968,14 @@
   {
    "date": "2026-07-18",
    "count": 16,
-   "level": 2,
+   "level": 1,
    "row": 6,
    "col": 39
   },
   {
    "date": "2026-07-19",
    "count": 38,
-   "level": 4,
+   "level": 2,
    "row": 0,
    "col": 40
   },
@@ -1996,7 +1996,7 @@
   {
    "date": "2026-07-22",
    "count": 28,
-   "level": 3,
+   "level": 2,
    "row": 3,
    "col": 40
   },
@@ -2080,14 +2080,14 @@
   {
    "date": "2026-08-03",
    "count": 32,
-   "level": 4,
+   "level": 2,
    "row": 1,
    "col": 42
   },
   {
    "date": "2026-08-04",
    "count": 40,
-   "level": 4,
+   "level": 2,
    "row": 2,
    "col": 42
   },
@@ -2143,14 +2143,14 @@
   {
    "date": "2026-08-12",
    "count": 16,
-   "level": 2,
+   "level": 1,
    "row": 3,
    "col": 43
   },
   {
    "date": "2026-08-13",
    "count": 11,
-   "level": 2,
+   "level": 1,
    "row": 4,
    "col": 43
   },
@@ -2178,21 +2178,21 @@
   {
    "date": "2026-08-17",
    "count": 11,
-   "level": 2,
+   "level": 1,
    "row": 1,
    "col": 44
   },
   {
    "date": "2026-08-18",
    "count": 14,
-   "level": 2,
+   "level": 1,
    "row": 2,
    "col": 44
   },
   {
    "date": "2026-08-19",
    "count": 19,
-   "level": 2,
+   "level": 1,
    "row": 3,
    "col": 44
   },
@@ -2241,7 +2241,7 @@
   {
    "date": "2026-08-26",
    "count": 11,
-   "level": 2,
+   "level": 1,
    "row": 3,
    "col": 45
   },
@@ -2311,7 +2311,7 @@
   {
    "date": "2026-09-05",
    "count": 11,
-   "level": 2,
+   "level": 1,
    "row": 6,
    "col": 46
   },
@@ -2367,7 +2367,7 @@
   {
    "date": "2026-09-13",
    "count": 14,
-   "level": 2,
+   "level": 1,
    "row": 0,
    "col": 48
   },
@@ -2388,7 +2388,7 @@
   {
    "date": "2026-09-16",
    "count": 11,
-   "level": 2,
+   "level": 1,
    "row": 3,
    "col": 48
   },
@@ -2444,14 +2444,14 @@
   {
    "date": "2026-09-24",
    "count": 19,
-   "level": 2,
+   "level": 1,
    "row": 4,
    "col": 49
   },
   {
    "date": "2026-09-25",
    "count": 22,
-   "level": 3,
+   "level": 2,
    "row": 5,
    "col": 49
   },
@@ -2472,7 +2472,7 @@
   {
    "date": "2026-09-28",
    "count": 33,
-   "level": 4,
+   "level": 2,
    "row": 1,
    "col": 50
   },
@@ -2500,7 +2500,7 @@
   {
    "date": "2026-10-02",
    "count": 13,
-   "level": 2,
+   "level": 1,
    "row": 5,
    "col": 50
   },
@@ -2514,7 +2514,7 @@
   {
    "date": "2026-10-04",
    "count": 12,
-   "level": 2,
+   "level": 1,
    "row": 0,
    "col": 51
   },
@@ -2528,7 +2528,7 @@
   {
    "date": "2026-10-06",
    "count": 11,
-   "level": 2,
+   "level": 1,
    "row": 2,
    "col": 51
   },
@@ -2542,14 +2542,14 @@
   {
    "date": "2026-10-08",
    "count": 19,
-   "level": 2,
+   "level": 1,
    "row": 4,
    "col": 51
   },
   {
    "date": "2026-10-09",
    "count": 12,
-   "level": 2,
+   "level": 1,
    "row": 5,
    "col": 51
   },
@@ -2590,9 +2590,16 @@
   },
   {
    "date": "2026-10-15",
-   "count": 2,
-   "level": 1,
+   "count": 85,
+   "level": 4,
    "row": 4,
+   "col": 52
+  },
+  {
+   "date": "2026-10-16",
+   "count": 61,
+   "level": 3,
+   "row": 5,
    "col": 52
   }
  ]
