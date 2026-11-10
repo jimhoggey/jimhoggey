@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="theme-color" content="#000000">
+<meta name="robots" content="noindex, nofollow">
+<title>OneReel</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><linearGradient id='g' x1='0' y1='1' x2='1' y2='0'><stop offset='0' stop-color='%2300d2ff'/><stop offset='.55' stop-color='%237a5cff'/><stop offset='1' stop-color='%23ff4fa3'/></linearGradient></defs><rect width='32' height='32' rx='9' fill='url(%23g)'/><text x='16' y='23' text-anchor='middle' font-size='19' font-weight='800' fill='white' font-family='system-ui'>1</text></svg>">
+<style>
+  :root {
+    --grad: linear-gradient(45deg, #00d2ff 0%, #7a5cff 55%, #ff4fa3 100%);
+    --ink: #fff;
+    --dim: rgba(255, 255, 255, .72);
+    --safe-b: env(safe-area-inset-bottom, 0px);
+    --safe-t: env(safe-area-inset-top, 0px);
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin: 0; height: 100%; background: #000; color: var(--ink); overflow: hidden; overscroll-behavior: none; }
+  body { font: 15px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; display: flex; justify-content: center; }
+  button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+  [hidden] { display: none !important; }
+
+  /* The phone-shaped column. Full screen on a phone, centred on a desktop. */
+  #app { position: relative; height: 100dvh; width: min(100vw, calc(100dvh * 9 / 16)); overflow: hidden; background: #000; user-select: none; -webkit-user-select: none; touch-action: none; }
+
+  /* ---------- landing ---------- */
+  #landing { position: absolute; inset: 0; z-index: 30; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; padding: 32px 28px; text-align: center; background: radial-gradient(120% 80% at 50% 0%, #1b1440 0%, #000 70%); transition: opacity .35s, visibility .35s; }
+  #landing.gone { opacity: 0; visibility: hidden; }
+  .logo { width: 84px; height: 84px; border-radius: 24px; background: var(--grad); display: grid; place-items: center; font-size: 48px; font-weight: 800; box-shadow: 0 12px 40px rgba(122, 92, 255, .45); }
+  .word { font-size: 34px; font-weight: 800; letter-spacing: -.02em; }
+  .word span { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  #hello { font-size: 20px; font-weight: 600; min-height: 1.4em; }
+  .sub { color: var(--dim); max-width: 26ch; }
+  .cta { margin-top: 10px; padding: 15px 30px; border-radius: 999px; background: var(--grad); font-weight: 700; font-size: 17px; box-shadow: 0 10px 30px rgba(255, 79, 163, .35); }
+  .cta:active { transform: scale(.97); }
+  .cta[disabled] { opacity: .5; }
+
+  /* ---------- the two-slot feed: today's reel, then the wall ---------- */
+  #track { position: absolute; inset: 0; transition: transform .42s cubic-bezier(.22, .8, .2, 1); will-change: transform; }
+  #track.dragging { transition: none; }
+  .slot { position: absolute; left: 0; width: 100%; height: 100%; }
+  #reel { top: 0; }
+  #wall { top: 100%; }
+
+  #player-wrap { position: absolute; inset: 0; background: #000; }
+  #player-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  /* Sits over the video so taps and swipes are ours, not YouTube's. */
+  #touch { position: absolute; inset: 0; z-index: 5; }
+  .shade { position: absolute; left: 0; right: 0; pointer-events: none; z-index: 6; }
+  .shade.top { top: 0; height: 120px; background: linear-gradient(#000a, transparent); }
+  .shade.bot { bottom: 0; height: 240px; background: linear-gradient(transparent, #000c); }
+
+  #topbar { position: absolute; top: calc(var(--safe-t) + 12px); left: 16px; right: 16px; z-index: 8; display: flex; align-items: center; justify-content: space-between; pointer-events: none; }
+  #topbar b { font-size: 22px; font-weight: 800; letter-spacing: -.01em; text-shadow: 0 1px 6px #0008; }
+  .pill { font-size: 12px; font-weight: 700; padding: 5px 10px; border-radius: 999px; background: rgba(255, 255, 255, .16); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+
+  #rail { position: absolute; right: 10px; bottom: calc(var(--safe-b) + 96px); z-index: 8; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+  #rail button { display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 12px; font-weight: 600; text-shadow: 0 1px 4px #000a; }
+  #rail svg { width: 30px; height: 30px; filter: drop-shadow(0 1px 3px #0009); fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  #like.on svg { fill: #ff3b6b; stroke: #ff3b6b; animation: pop .35s; }
+  @keyframes pop { 40% { transform: scale(1.35); } }
+
+  #meta { position: absolute; left: 14px; right: 74px; bottom: calc(var(--safe-b) + 26px); z-index: 8; pointer-events: none; text-shadow: 0 1px 4px #000a; }
+  .who { display: flex; align-items: center; gap: 9px; font-weight: 700; margin-bottom: 7px; }
+  .ava { width: 34px; height: 34px; border-radius: 50%; background: var(--grad); display: grid; place-items: center; font-weight: 800; border: 2px solid #fff; }
+  #caption { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; color: #fff; }
+  #streak { margin-top: 6px; font-size: 12.5px; color: var(--dim); }
+
+  #progress { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; z-index: 9; background: rgba(255, 255, 255, .22); }
+  #progress i { display: block; height: 100%; width: 0; background: #fff; }
+
+  #hint { position: absolute; left: 0; right: 0; bottom: calc(var(--safe-b) + 150px); z-index: 7; text-align: center; font-size: 12.5px; color: var(--dim); pointer-events: none; opacity: 0; transition: opacity .5s; }
+  #hint.show { opacity: 1; animation: bob 1.6s ease-in-out infinite; }
+  @keyframes bob { 50% { transform: translateY(-7px); } }
+
+  #big { position: absolute; top: 50%; left: 50%; z-index: 7; width: 84px; height: 84px; margin: -42px 0 0 -42px; border-radius: 50%; background: #0008; display: grid; place-items: center; pointer-events: none; opacity: 0; transition: opacity .2s; }
+  #big.show { opacity: 1; }
+  #big svg { width: 38px; height: 38px; fill: #fff; }
+  #burst { position: absolute; z-index: 7; width: 110px; height: 110px; margin: -55px 0 0 -55px; pointer-events: none; opacity: 0; }
+  #burst.go { animation: burst .8s ease-out; }
+  #burst svg { width: 100%; height: 100%; fill: #ff3b6b; filter: drop-shadow(0 4px 14px #0008); }
+  @keyframes burst { 0% { opacity: 0; transform: scale(.3) rotate(-12deg); } 25% { opacity: 1; transform: scale(1.15) rotate(-12deg); } 60% { opacity: 1; transform: scale(1) rotate(-12deg); } 100% { opacity: 0; transform: scale(1.1) translateY(-40px) rotate(-12deg); } }
+
+  #sound { position: absolute; top: calc(var(--safe-t) + 56px); left: 50%; transform: translateX(-50%); z-index: 9; padding: 8px 14px; border-radius: 999px; background: #000a; font-weight: 600; font-size: 13px; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+
+  #toast { position: absolute; left: 50%; bottom: calc(var(--safe-b) + 90px); transform: translate(-50%, 20px); z-index: 40; max-width: 82%; padding: 11px 16px; border-radius: 14px; background: #262626; font-size: 14px; text-align: center; opacity: 0; transition: opacity .25s, transform .25s; pointer-events: none; }
+  #toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+  /* ---------- the wall ---------- */
+  #wall { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 32px 28px; text-align: center; background: radial-gradient(120% 80% at 50% 100%, #2a0f3d 0%, #000 70%); }
+  #wall.shake { animation: shake .4s; }
+  @keyframes shake { 20% { transform: translateY(-14px); } 45% { transform: translateY(6px); } 70% { transform: translateY(-4px); } }
+  .tick { width: 76px; height: 76px; border-radius: 50%; padding: 3px; background: var(--grad); }
+  .tick div { width: 100%; height: 100%; border-radius: 50%; background: #000; display: grid; place-items: center; }
+  .tick svg { width: 36px; height: 36px; fill: none; stroke: #fff; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+  #wall h1 { margin: 6px 0 0; font-size: 26px; letter-spacing: -.02em; }
+  #nag { color: var(--dim); min-height: 2.8em; max-width: 28ch; }
+  .count-label { margin-top: 10px; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--dim); }
+  #count { font-size: 44px; font-weight: 800; font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
+  .ghost { margin-top: 14px; padding: 12px 22px; border-radius: 999px; border: 1.5px solid rgba(255, 255, 255, .35); font-weight: 600; }
+</style>
+</head>
+<body>
+<div id="app">
+
+  <section id="landing">
+    <div class="logo">1</div>
+    <div class="word">One<span>Reel</span></div>
+    <div id="hello"></div>
+    <div class="sub" id="sub">All the scrolling you love. Exactly one reel a day.</div>
+    <button class="cta" id="start" disabled>Loading…</button>
+  </section>
+
+  <div id="track">
+    <section class="slot" id="reel">
+      <div id="player-wrap"><div id="player"></div></div>
+      <div class="shade top"></div><div class="shade bot"></div>
+      <div id="touch"></div>
+
+      <div id="topbar"><b>Reels</b><span class="pill">1 of 1 today</span></div>
+      <button id="sound" hidden>🔇 Tap for sound</button>
+
+      <div id="big"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+      <div id="burst"><svg viewBox="0 0 24 24"><path d="M12 20.500s-7-4.300-9.300-8.700C1.200 8.700 3 5.300 6.400 5.300c2 0 3.500 1.100 4.400 2.500h2.400c.900-1.400 2.400-2.500 4.400-2.500 3.400 0 5.200 3.400 3.700 6.500C19 16.200 12 20.500 12 20.500z"/></svg></div>
+
+      <div id="rail">
+        <button id="like" aria-label="Like"><svg viewBox="0 0 24 24"><path d="M12 20.500s-7-4.300-9.300-8.700C1.200 8.700 3 5.300 6.400 5.300c2 0 3.500 1.100 4.400 2.500h2.400c.9-1.400 2.400-2.500 4.400-2.500 3.400 0 5.200 3.400 3.700 6.500C19 16.200 12 20.500 12 20.500z"/></svg><span id="likes">Like</span></button>
+        <button id="comment" aria-label="Comments"><svg viewBox="0 0 24 24"><path d="M21 11.500a8.500 8.500 0 0 1-12.600 7.400L3 20.500l1.700-5A8.500 8.500 0 1 1 21 11.500z"/></svg><span>0</span></button>
+        <button id="share" aria-label="Share"><svg viewBox="0 0 24 24"><path d="M21 3 10 14M21 3l-7 18-4-7-7-4z"/></svg><span>Share</span></button>
+        <button id="mute" aria-label="Mute"><svg viewBox="0 0 24 24"><path id="mute-path" d="M4 9v6h4l5 4V5L8 9zM16.500 8.500a5 5 0 0 1 0 7M19 6a8.500 8.500 0 0 1 0 12"/></svg></button>
+      </div>
+
+      <div id="meta">
+        <div class="who"><div class="ava">1</div><span>onereel.daily</span></div>
+        <div id="caption">Today's reel</div>
+        <div id="streak"></div>
+      </div>
+      <div id="hint">⌃ swipe up for the next reel</div>
+      <div id="progress"><i></i></div>
+    </section>
+
+    <section class="slot" id="wall">
+      <div class="tick"><div><svg viewBox="0 0 24 24"><path d="m5 12.500 4.500 4.500L19 7.500"/></svg></div></div>
+      <h1>You're all caught up</h1>
+      <div id="nag">That was your reel for today. Yes, the whole feed.</div>
+      <div class="count-label">Next reel in</div>
+      <div id="count">--:--:--</div>
+      <button class="ghost" id="again">Rewatch today's reel</button>
+    </section>
+  </div>
+
+  <div id="toast"></div>
+</div>
+
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+  const store = {
+    get(k, d) { try { return JSON.parse(localStorage.getItem('onereel.' + k)) ?? d; } catch { return d; } },
+    set(k, v) { try { localStorage.setItem('onereel.' + k, JSON.stringify(v)); } catch {} },
+  };
+
+  const NAGS = [
+    'That was your reel for today. Yes, the whole feed.',
+    'Nope. Still just the one.',
+    'Swiping harder does not help.',
+    'The algorithm has gone home for the day.',
+    'Have you considered going outside?',
+    'There is a whole world out there. It has real animals in it.',
+    'Seriously. Tomorrow.',
+    'Your thumb needs the rest.',
+  ];
+
+  let today = null, alt = 0, player = null, onWall = false, deadline = 0, nag = 0, started = false;
+
+  // ---------- data ----------
+  async function load() {
+    const r = await fetch('/api/today' + (alt ? '?alt=' + alt : ''), { cache: 'no-store' });
+    if (!r.ok) throw new Error('api ' + r.status);
+    today = await r.json();
+    deadline = Date.now() + today.secondsToNext * 1000;
+  }
+
+  function streak() {
+    const s = store.get('streak', { day: 0, run: 0 });
+    if (s.day !== today.day) {
+      s.run = s.day === today.day - 1 ? s.run + 1 : 1;
+      s.day = today.day;
+      store.set('streak', s);
+    }
+    $('streak').textContent = s.run > 1 ? '🔥 ' + s.run + ' day streak' : 'Day one. Pace yourself.';
+  }
+
+  // ---------- toast ----------
+  let toastTimer;
+  function toast(msg) {
+    $('toast').textContent = msg;
+    $('toast').classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => $('toast').classList.remove('show'), 2400);
+  }
+
+  // ---------- player ----------
+  function loadApi() {
+    return new Promise((resolve, reject) => {
+      if (window.YT && YT.Player) return resolve();
+      window.onYouTubeIframeAPIReady = resolve;
+      const s = document.createElement('script');
+      s.src = 'https://www.youtube.com/iframe_api';
+      s.onerror = reject;
+      document.head.appendChild(s);
+    });
+  }
+
+  function makePlayer() {
+    player = new YT.Player('player', {
+      videoId: today.id,
+      width: '100%', height: '100%',
+      playerVars: { autoplay: 1, controls: 0, loop: 1, playlist: today.id, playsinline: 1, rel: 0, fs: 0, disablekb: 1, iv_load_policy: 3, modestbranding: 1 },
+      events: {
+        onReady(e) {
+          e.target.playVideo();
+          const d = e.target.getVideoData && e.target.getVideoData();
+          if (d && d.title) $('caption').textContent = d.title;
+          // Some browsers refuse sound until the video itself has been tapped.
+          setTimeout(() => {
+            if (player.getPlayerState() !== 1 && !onWall) { player.mute(); player.playVideo(); $('sound').hidden = false; setMuteIcon(true); }
+          }, 1800);
+          setTimeout(() => { if (!onWall) $('hint').classList.add('show'); }, 6000);
+        },
+        onStateChange(e) {
+          if (e.data === 0) { e.target.seekTo(0); e.target.playVideo(); }   // loop, belt and braces
+          if (e.data === 1) $('big').classList.remove('show');
+        },
+        async onError() {
+          // Removed, private or embedding switched off: quietly try a stand-in.
+          if (alt < 2) {
+            alt += 1;
+            try { await load(); player.loadVideoById(today.id); return; } catch {}
+          }
+          toast("Today's reel has gone missing. Come back tomorrow.");
+          go(true);
+        },
+      },
+    });
+    setInterval(() => {
+      if (!player || !player.getDuration || onWall) return;
+      const d = player.getDuration();
+      if (d > 0) $('progress').firstElementChild.style.width = (100 * player.getCurrentTime() / d) + '%';
+    }, 200);
+  }
+
+  function setMuteIcon(muted) {
+    $('mute-path').setAttribute('d', muted
+      ? 'M4 9v6h4l5 4V5L8 9zM17 9.500l5 5M22 9.500l-5 5'
+      : 'M4 9v6h4l5 4V5L8 9zM16.500 8.500a5 5 0 0 1 0 7M19 6a8.500 8.500 0 0 1 0 12');
+  }
+  function unmute() { if (!player) return; player.unMute(); player.setVolume(100); player.playVideo(); $('sound').hidden = true; setMuteIcon(false); }
+  function toggleMute() { if (!player) return; if (player.isMuted()) unmute(); else { player.mute(); setMuteIcon(true); } }
+  function togglePlay() {
+    if (!player || !player.getPlayerState) return;
+    if (!$('sound').hidden) return unmute();
+    if (player.getPlayerState() === 1) { player.pauseVideo(); $('big').classList.add('show'); }
+    else { player.playVideo(); $('big').classList.remove('show'); }
+  }
+
+  // ---------- like ----------
+  function setLike(on) {
+    $('like').classList.toggle('on', on);
+    $('likes').textContent = on ? '1' : 'Like';
+    store.set('like', on ? today.day : 0);
+  }
+  function burst(x, y) {
+    const b = $('burst');
+    b.style.left = x + 'px'; b.style.top = y + 'px';
+    b.classList.remove('go'); void b.offsetWidth; b.classList.add('go');
+    setLike(true);
+  }
+
+  // ---------- feed movement ----------
+  function go(toWall) {
+    onWall = toWall;
+    $('track').style.transform = toWall ? 'translateY(-100%)' : '';
+    $('hint').classList.remove('show');
+    if (player && player.pauseVideo) { toWall ? player.pauseVideo() : player.playVideo(); }
+    if (!toWall) $('big').classList.remove('show');
+  }
+  function refuse() {
+    nag = (nag + 1) % NAGS.length;
+    $('nag').textContent = NAGS[nag];
+    const w = $('wall');
+    w.classList.remove('shake'); void w.offsetWidth; w.classList.add('shake');
+    if (navigator.vibrate) navigator.vibrate(30);
+  }
+  function next() { if (!started) return; onWall ? refuse() : go(true); }
+  function prev() { if (started && onWall) go(false); }
+
+  // Swipes, taps and double taps on the reel; swipes on the wall.
+  let sy = null, sx = 0, st = 0, moved = false, lastTap = 0, tapTimer;
+  const app = $('app'), track = $('track');
+  app.addEventListener('pointerdown', (e) => {
+    if (!started || e.target.closest('button')) return;
+    sy = e.clientY; sx = e.clientX; st = Date.now(); moved = false;
+  });
+  app.addEventListener('pointermove', (e) => {
+    if (sy === null) return;
+    const dy = e.clientY - sy;
+    if (Math.abs(dy) > 8) moved = true;
+    if (!moved) return;
+    track.classList.add('dragging');
+    const h = app.clientHeight;
+    // Rubber band when pulling the wrong way or past the wall.
+    const base = onWall ? -h : 0;
+    const allowed = onWall ? dy > 0 : dy < 0;
+    track.style.transform = 'translateY(' + (base + (allowed ? dy : dy * 0.25)) + 'px)';
+  });
+  const end = (e) => {
+    if (sy === null) return;
+    const dy = e.clientY - sy, quick = Date.now() - st < 300;
+    const far = Math.abs(dy) > app.clientHeight * 0.18 || (quick && Math.abs(dy) > 40);
+    const y0 = sy; sy = null;
+    track.classList.remove('dragging');
+    if (moved) {
+      if (far && dy < 0) { onWall ? (go(true), refuse()) : go(true); }
+      else if (far && dy > 0 && onWall) go(false);
+      else go(onWall);
+      return;
+    }
+    if (onWall || e.target.id !== 'touch') return;
+    const rect = app.getBoundingClientRect(), now = Date.now();
+    if (now - lastTap < 280) { clearTimeout(tapTimer); lastTap = 0; burst(sx - rect.left, y0 - rect.top); }
+    else { lastTap = now; tapTimer = setTimeout(togglePlay, 285); }
+  };
+  app.addEventListener('pointerup', end);
+  app.addEventListener('pointercancel', () => { sy = null; track.classList.remove('dragging'); go(onWall); });
+
+  let wheelLock = 0;
+  window.addEventListener('wheel', (e) => {
+    if (Date.now() < wheelLock || Math.abs(e.deltaY) < 12) return;
+    wheelLock = Date.now() + 700;
+    e.deltaY > 0 ? next() : prev();
+  }, { passive: true });
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') next();
+    else if (e.key === 'ArrowUp' || e.key === 'PageUp') prev();
+    else if (e.key === ' ' && started && !onWall) { e.preventDefault(); togglePlay(); }
+    else if (e.key === 'm') toggleMute();
+  });
+
+  // ---------- buttons ----------
+  $('like').onclick = () => setLike(!$('like').classList.contains('on'));
+  $('comment').onclick = () => toast('Comments are off. Ring an actual friend.');
+  $('mute').onclick = toggleMute;
+  $('sound').onclick = unmute;
+  $('again').onclick = () => go(false);
+  $('share').onclick = async () => {
+    const data = { title: 'OneReel', text: 'I get one reel a day. This is the place.', url: location.origin };
+    try { if (navigator.share) await navigator.share(data); else { await navigator.clipboard.writeText(data.url); toast('Link copied'); } } catch {}
+  };
+
+  // ---------- countdown ----------
+  setInterval(() => {
+    if (!deadline) return;
+    const left = Math.round((deadline - Date.now()) / 1000);
+    if (left <= 0) {
+      $('count').textContent = '00:00:00';
+      $('nag').textContent = 'A fresh reel has landed.';
+      $('again').textContent = "Watch today's reel";
+      $('again').onclick = () => location.reload();
+      deadline = 0;
+      return;
+    }
+    const p = (n) => String(n).padStart(2, '0');
+    $('count').textContent = p(Math.floor(left / 3600)) + ':' + p(Math.floor(left / 60) % 60) + ':' + p(left % 60);
+  }, 500);
+  // Left open overnight: pick up the new day when she comes back to the tab.
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden && today && Date.now() > deadline + 1000 && deadline) location.reload();
+  });
+
+  // ---------- boot ----------
+  $('start').onclick = async () => {
+    $('start').disabled = true;
+    started = true;
+    $('landing').classList.add('gone');
+    try { await loadApi(); makePlayer(); }
+    catch { toast('The video player could not load. Check the connection and reload.'); }
+  };
+
+  load().then(() => {
+    if (today.name) $('hello').textContent = 'Made for ' + today.name + ' 🎂';
+    if (store.get('like', 0) === today.day) setLike(true);
+    streak();
+    $('start').textContent = "Watch today's reel";
+    $('start').disabled = false;
+  }).catch(() => {
+    $('sub').textContent = 'Could not reach the reel server. Give it a moment and reload.';
+    $('start').textContent = 'Offline';
+  });
+})();
+</script>
+</body>
+</html>

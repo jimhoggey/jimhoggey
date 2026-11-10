@@ -1,0 +1,8 @@
+# Netlify: set "Base directory" to one-reel when connecting the repo.
+[build]
+  publish = "public"
+  command = ""
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
