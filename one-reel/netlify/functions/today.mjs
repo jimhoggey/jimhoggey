@@ -42,7 +42,7 @@ export default async (req) => {
   const alt = Math.min(2, Math.max(0, Number.parseInt(url.searchParams.get('alt') ?? '0', 10) || 0));
   const tz = process.env.REEL_TZ || 'Australia/Sydney';
   const start = process.env.REEL_START || '2026-11-10';
-  const body = { ...pick({ tz, start, alt }), name: process.env.REEL_NAME || '' };
+  const body = { ...pick({ tz, start, alt }), name: process.env.REEL_NAME || 'Sally' };
   return new Response(JSON.stringify(body), {
     headers: { 'content-type': 'application/json', 'cache-control': 'no-store' },
   });

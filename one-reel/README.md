@@ -20,7 +20,7 @@ reel back. No database, no login.
 
 | Variable | Default | Purpose |
 |---|---|---|
-| `REEL_NAME` | empty | Shows "Made for NAME" on the opening screen |
+| `REEL_NAME` | `Sally` | Shows "Made for NAME" on the opening screen |
 | `REEL_TZ` | `Australia/Sydney` | Timezone that decides when midnight is |
 | `REEL_START` | `2026-11-10` | Date that plays the first reel in the list |
 
